@@ -1,18 +1,11 @@
-// data can now either be:
-// - a parsed version of the json that is stored in the localstorage
-// - if nothing is stored in the localstorage, the value will be []
-// this saves us from writing code such as:
-// if(!data) {
-//     data = []
-// }
 
 const LOCAL_STORAGE_KEY = 'products'
 
-function saveProducts(data) {
+function saveProducts(data: string) {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data))
 }
 
-function deleteProduct(productId) {
+function deleteProduct(productId: number) {
     if (confirm(`are you sure you want to delete product ${productId}?`)) {
         const data = getData()
         let index = 0;
@@ -29,7 +22,7 @@ function deleteProduct(productId) {
 }
 
 function getData() {
-    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || []
+    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) ?? "[]")
 }
 
 function getPriceAverage() {
@@ -47,7 +40,7 @@ function syncDataToDOM() {
     let idx = 0
     for (const product of getData()) {
 
-        // const color = price < 200 ? 'green' : price < 700 ? 'red'./..
+        const color = product.price < 200 ? 'green' : product.price < 700 ? 'red' : 'blue'
 
         htmlString += `
             <tr>
@@ -65,18 +58,18 @@ function syncDataToDOM() {
 
         idx += 1
     }
-    document.getElementById('data').innerHTML = htmlString
+    document.getElementById('data')!.innerHTML = htmlString
 
     // set total
-    document.getElementById('total').innerHTML = getData().length
+    document.getElementById('total')!.innerHTML = String(getData().length)
 
     // set average
-    document.getElementById('averagePrice').innerHTML = getPriceAverage()
+    document.getElementById('averagePrice')!.innerHTML = String(getPriceAverage())
 
 
 }
 
-function isValidURL(url) {
+function isValidURL(url: string) {
     if (!url.startsWith('http')) {
         return false
     }
@@ -92,20 +85,20 @@ function isValidURL(url) {
     return true
 }
 
-function addProduct(event) {
+function addProduct(event: SubmitEvent) {
 
     // tell the browser: you are old and now is 2026 and not 1994
     // and i want to take control, so dont submit to any server...
     event.preventDefault()
 
     // input
-    const catalogNumber = document.getElementById('catalogNumber').value
-    const title = document.getElementById('title').value
-    const description = document.getElementById('description').value
-    const price = document.getElementById('price').value
-    const category = document.getElementById('category').value
-    const color = document.getElementById('color').value
-    const imageURL = document.getElementById('imageURL').value
+    const catalogNumber = (document.getElementById('catalogNumber')! as HTMLInputElement).value
+    const title = (document.getElementById('title')! as HTMLInputElement).value
+    const description = (document.getElementById('description')! as HTMLInputElement).value
+    const price = (document.getElementById('price')! as HTMLInputElement).value
+    const category = (document.getElementById('category')! as HTMLInputElement).value
+    const color = (document.getElementById('color')! as HTMLInputElement).value
+    const imageURL = (document.getElementById('imageURL')! as HTMLInputElement).value
 
     // validation
     if (!isValidURL(imageURL)) {
@@ -142,10 +135,10 @@ function addProduct(event) {
 
 
     // output
-    syncDataToDOM()
+    syncDataToDOM();
 
     // reset the form for next product
-    document.getElementById('productForm').reset()
+    (document.getElementById('productForm')! as HTMLFormElement).reset()
 
 }
 
