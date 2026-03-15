@@ -1,49 +1,36 @@
 
 const LOCAL_STORAGE_KEY = 'products'
 
-function saveProducts(data: string) {
+function saveProducts(data: any[]) {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data))
 }
 
 function deleteProduct(productId: number) {
     if (confirm(`are you sure you want to delete product ${productId}?`)) {
         const data = getData()
-        let index = 0;
-        for (const product of data) {
-            if (+product.catalogNumber === productId) {
-                data.splice(index, 1)
-                saveProducts(data)
-                syncDataToDOM()
-                return
-            }
-            index++
+        const index = data.findIndex((product: any) => +product.catalogNumber === productId)
+        if (index !== -1) {
+            data.splice(index, 1)
+            saveProducts(data)
+            syncDataToDOM()
         }
     }
 }
+
 
 function getData() {
     return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) ?? "[]")
 }
 
 function getPriceAverage() {
-    let sum = 0
-    for (const product of getData()) {
-        // sum = sum + data.price
-        // a shorter version to the line above with +=:
-        sum += product.price
-    }
-    return getData().length ? sum / getData().length : 0
+    let totalSum = getData().reduce((sum: number, product: any) => sum + product.price, 0)
+    return getData().length ? totalSum / getData().length : 0
 }
 
 function syncDataToDOM() {
-    let htmlString = ''
-    let idx = 0
-    for (const product of getData()) {
-
+    const htmlString = getData().map((product: any, i: number) => {
         const color = product.price < 200 ? 'green' : product.price < 700 ? 'red' : 'blue'
-
-        htmlString += `
-            <tr>
+        return `<tr>
                 <td>${product.catalogNumber}</td>
                 <td>${product.title}</td>
                 <td>${product.description}</td>
@@ -51,13 +38,11 @@ function syncDataToDOM() {
                 <td>${product.category}</td>
                 <td style="background-color: ${product.color};">${product.color}</td>
                 <td><img src="${product.imageURL}" /></td>
-                <td><button onclick="deleteProduct(${idx})" class="deleteButton">delete</button></td>
+                <td><button onclick="deleteProduct(${i})" class="deleteButton">delete</button></td>
             </tr>
     
         `
-
-        idx += 1
-    }
+    }).join('')
     document.getElementById('data')!.innerHTML = htmlString
 
     // set total
