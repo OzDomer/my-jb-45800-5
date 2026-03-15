@@ -1,5 +1,6 @@
 import instrument from "./instrument.js"
-export default class piano extends instrument {
+import Tester from "./tester.js"
+export default class piano extends instrument implements Tester {
     constructor(
         model: string,
         manufacturer: string,
@@ -11,5 +12,11 @@ export default class piano extends instrument {
     }
     makeSound(): void {
         console.log("Making piano sound")
+    }
+    test(): void {
+        console.log("testing piano")
+    }
+    tune(): void {
+        console.log("tuning piano")
     }
 }
