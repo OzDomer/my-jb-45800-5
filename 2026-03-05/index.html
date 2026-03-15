@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script defer src="app.js"></script>
+    <script defer src="dist/app.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <form id="productForm" onsubmit="addProduct(event)">
 
-        <input id="catalogNumber" placeholder="catalog number" type="number" required min="0" max="999"/>
+        <input id="catalogNumber" placeholder="catalog number" type="number" required min="0" max="999" />
 
-        <input id="title" placeholder="title" required maxlength="30"/>
+        <input id="title" placeholder="title" required maxlength="30" />
 
         <textarea id="description" placeholder="description" required></textarea>
 
@@ -25,9 +27,9 @@
             <option value="botox">botox</option>
         </select>
 
-        <input id="color" placeholder="color" type="color"/>
+        <input id="color" placeholder="color" type="color" />
 
-        <input id="imageURL" placeholder="image url" required/>
+        <input id="imageURL" placeholder="image url" required />
 
         <button>submit</button>
         <button type="reset">reset</button>
@@ -64,4 +66,5 @@
 
     </table>
 </body>
+
 </html>
