@@ -1,0 +1,9 @@
+.Main {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    grid-template-rows: 1fr;
+    gap: 16px;
+    padding: 16px;
+    flex: 1;
+    box-sizing: border-box;
+}
