@@ -1,9 +1,15 @@
 import './App.css'
 import Main from "../main/Main"
+import Pageheader from "../pageheader/Pageheader"
+import Footer from '../footer/Footer'
 function App() {
 
   return (
-    <Main />
+    <div>
+      <Pageheader />
+      <Main />
+      <Footer />
+    </div>
   )
 }
 
