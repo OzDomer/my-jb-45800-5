@@ -2,8 +2,8 @@ import "./Pageheader.css"
 
 export default function Pageheader() {
     return (
-        <div>
-            My pet store!
+        <div className="Pageheader">
+            My Pet Shop
         </div>
     )
 }

@@ -7,3 +7,16 @@
     align-items: stretch;
     box-sizing: border-box;
 }
+
+.Main-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.Main-section-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #444;
+}

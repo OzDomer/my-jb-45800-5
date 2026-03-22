@@ -1,5 +1,4 @@
 import "./Main.css"
-import "../petsection/Petsection"
 import Petsection from "../petsection/Petsection"
 import Banner from "../banner/Banner"
 const dogs =
@@ -16,10 +15,13 @@ const cats = [
 export default function Main() {
     return (
         <div className="Main">
-            <Petsection pets={dogs} />
-            <Petsection pets={cats} />
+            <Petsection
+                title="Dogs"
+                pets={dogs} />
+            <Petsection
+                title="Cats"
+                pets={cats} />
             <Banner />
-
         </div>
     )
 }
