@@ -1,9 +1,12 @@
 
 import './App.css'
-
+import "../oddOrEven/oddOrEven"
+import OddOrEven from '../oddOrEven/oddOrEven'
 function App() {
   return (
-    <div></div>
+    <div className="App">
+      <OddOrEven />
+    </div>
   )
 }
 
