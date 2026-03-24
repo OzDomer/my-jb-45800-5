@@ -1,6 +1,5 @@
 
 import './App.css'
-import "../oddOrEven/oddOrEven"
 import OddOrEven from '../oddOrEven/oddOrEven'
 function App() {
   return (
