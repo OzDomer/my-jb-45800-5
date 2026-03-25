@@ -1,0 +1,22 @@
+.Follow {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.Follow:hover {
+    background-color: #f9f9f9;
+}
+
+.Follow h3 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.Follow h4 {
+    margin: 0;
+    font-size: 12px;
+    color: gray;
+    font-weight: normal;
+}
